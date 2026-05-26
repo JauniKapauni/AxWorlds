@@ -14,6 +14,7 @@ public class TeleportCommand implements CommandExecutor {
         Player p = (Player) sender;
         World targetWorld = Bukkit.getWorld(args[0]);
         p.teleport(targetWorld.getSpawnLocation());
+        p.sendMessage("You were successfully teleported to " + args[0]);
         return true;
     }
 }
