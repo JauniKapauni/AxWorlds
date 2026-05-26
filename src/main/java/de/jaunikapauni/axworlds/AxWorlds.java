@@ -2,6 +2,7 @@ package de.jaunikapauni.axworlds;
 
 import de.jaunikapauni.axworlds.command.CreateCommand;
 import de.jaunikapauni.axworlds.command.ListCommand;
+import de.jaunikapauni.axworlds.command.RemoveCommand;
 import de.jaunikapauni.axworlds.command.TeleportCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -13,6 +14,7 @@ public final class AxWorlds extends JavaPlugin {
         getCommand("create").setExecutor(new CreateCommand());
         getCommand("list").setExecutor(new ListCommand());
         getCommand("teleport").setExecutor(new TeleportCommand());
+        getCommand("remove").setExecutor(new RemoveCommand());
     }
 
     @Override

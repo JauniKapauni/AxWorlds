@@ -14,3 +14,4 @@ commands:
   create:
   list:
   teleport:
+  remove:
