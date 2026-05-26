@@ -1,0 +1,11 @@
+name: AxWorlds
+description: $description
+prefix: AxWorlds
+version: '${version}'
+
+main: de.jaunikapauni.axworlds.AxWorlds
+api-version: '26.1.2'
+load: POSTWORLD
+
+authors: [ JauniKapauni ]
+website: https://github.com/JauniKapauni
