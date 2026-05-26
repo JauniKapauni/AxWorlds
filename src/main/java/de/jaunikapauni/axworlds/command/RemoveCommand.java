@@ -1,5 +1,6 @@
 package de.jaunikapauni.axworlds.command;
 
+import de.jaunikapauni.axworlds.AxWorlds;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -12,6 +13,10 @@ import org.jetbrains.annotations.NotNull;
 import java.io.File;
 
 public class RemoveCommand implements CommandExecutor {
+    AxWorlds reference;
+    public RemoveCommand(AxWorlds reference){
+        this.reference = reference;
+    }
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
         World world = Bukkit.getWorld(args[0]);
@@ -23,6 +28,8 @@ public class RemoveCommand implements CommandExecutor {
         Bukkit.unloadWorld(world, true);
         File worldFolder = world.getWorldFolder();
         deleteFolder(worldFolder);
+        reference.getConfig().set("worlds" + "." + args[0], null);
+        reference.saveConfig();
         return true;
     }
 
