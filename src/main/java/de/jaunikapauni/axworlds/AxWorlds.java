@@ -1,9 +1,6 @@
 package de.jaunikapauni.axworlds;
 
-import de.jaunikapauni.axworlds.command.CreateCommand;
-import de.jaunikapauni.axworlds.command.ListCommand;
-import de.jaunikapauni.axworlds.command.RemoveCommand;
-import de.jaunikapauni.axworlds.command.TeleportCommand;
+import de.jaunikapauni.axworlds.command.*;
 import org.bukkit.Bukkit;
 import org.bukkit.WorldCreator;
 import org.bukkit.generator.ChunkGenerator;
@@ -19,7 +16,9 @@ public final class AxWorlds extends JavaPlugin {
         getCommand("create").setExecutor(new CreateCommand(this));
         getCommand("list").setExecutor(new ListCommand());
         getCommand("teleport").setExecutor(new TeleportCommand());
+        getCommand("teleport").setTabCompleter(new TeleportTabCompleter());
         getCommand("remove").setExecutor(new RemoveCommand(this));
+        getCommand("remove").setTabCompleter(new RemoveTabCompleter());
         saveDefaultConfig();
         loadWorlds();
     }
