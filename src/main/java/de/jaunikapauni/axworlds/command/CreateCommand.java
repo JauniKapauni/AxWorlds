@@ -20,8 +20,10 @@ public class CreateCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
         WorldCreator creator = WorldCreator.name(args[0]);
+        boolean empty = false;
         if(args.length > 1 && args[1].equalsIgnoreCase("empty")){
             creator.generator(new ChunkGenerator() {});
+            empty = true;
         }
         World newWorld = Bukkit.createWorld(creator);
         Player p = (Player) sender;
@@ -29,7 +31,7 @@ public class CreateCommand implements CommandExecutor {
         spawnLoc.getChunk().load();
         p.teleport(spawnLoc);
         p.sendMessage("Your world " + args[0] + " has been created successfully!");
-        reference.getConfig().set("worlds" + "." + args[0], true);
+        reference.getConfig().set("worlds." + args[0] + ".empty", empty);
         reference.saveConfig();
         return true;
     }

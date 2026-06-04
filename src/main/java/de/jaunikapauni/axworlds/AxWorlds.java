@@ -6,6 +6,7 @@ import de.jaunikapauni.axworlds.command.RemoveCommand;
 import de.jaunikapauni.axworlds.command.TeleportCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.WorldCreator;
+import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Set;
@@ -32,7 +33,12 @@ public final class AxWorlds extends JavaPlugin {
         if(getConfig().getConfigurationSection("worlds") != null){
             Set<String> worlds = getConfig().getConfigurationSection("worlds").getKeys(false);
             for(String w : worlds){
-                Bukkit.createWorld(new WorldCreator(w));
+                boolean empty = getConfig().getBoolean("worlds." + w + ".empty");
+                WorldCreator creator = WorldCreator.name(w);
+                if(empty){
+                    creator.generator(new ChunkGenerator() {});
+                }
+                Bukkit.createWorld(creator);
             }
         }
     }

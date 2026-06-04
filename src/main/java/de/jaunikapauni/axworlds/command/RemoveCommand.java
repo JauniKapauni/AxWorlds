@@ -20,7 +20,7 @@ public class RemoveCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
         World world = Bukkit.getWorld(args[0]);
-        World defaultWorld = Bukkit.getWorld("world");
+        World defaultWorld = Bukkit.getWorlds().get(0);
         Location defaultSpawnLocation = defaultWorld.getSpawnLocation();
         for(Player p : world.getPlayers()){
             p.teleport(defaultSpawnLocation);
