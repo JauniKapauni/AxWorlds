@@ -9,6 +9,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.generator.ChunkGenerator;
 import org.jetbrains.annotations.NotNull;
 
 public class CreateCommand implements CommandExecutor {
@@ -18,7 +19,11 @@ public class CreateCommand implements CommandExecutor {
     }
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
-        World newWorld = Bukkit.getServer().createWorld(WorldCreator.name(args[0]));
+        WorldCreator creator = WorldCreator.name(args[0]);
+        if(args.length > 1 && args[1].equalsIgnoreCase("empty")){
+            creator.generator(new ChunkGenerator() {});
+        }
+        World newWorld = Bukkit.createWorld(creator);
         Player p = (Player) sender;
         Location spawnLoc = newWorld.getSpawnLocation();
         spawnLoc.getChunk().load();
