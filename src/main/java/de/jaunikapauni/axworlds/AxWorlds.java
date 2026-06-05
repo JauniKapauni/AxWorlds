@@ -23,6 +23,13 @@ public final class AxWorlds extends JavaPlugin {
         getCommand("remove").setTabCompleter(new RemoveTabCompleter());
         saveDefaultConfig();
         loadWorlds();
+        getLogger().info("");
+        getLogger().info("----------------------------------------");
+        getLogger().info("Name: " + getName());
+        getLogger().info("Version: " + getDescription().getVersion());
+        getLogger().info(String.join("Authors: " + ", ", getDescription().getAuthors()));
+        getLogger().info("----------------------------------------");
+        getLogger().info("");
     }
 
     @Override
