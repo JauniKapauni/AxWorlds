@@ -2,6 +2,7 @@ package de.jaunikapauni.axworlds;
 
 import de.jaunikapauni.axworlds.command.*;
 import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -14,6 +15,7 @@ public final class AxWorlds extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         getCommand("create").setExecutor(new CreateCommand(this));
+        getCommand("create").setTabCompleter(new CreateTabCompleter());
         getCommand("list").setExecutor(new ListCommand());
         getCommand("teleport").setExecutor(new TeleportCommand());
         getCommand("teleport").setTabCompleter(new TeleportTabCompleter());
@@ -32,10 +34,21 @@ public final class AxWorlds extends JavaPlugin {
         if(getConfig().getConfigurationSection("worlds") != null){
             Set<String> worlds = getConfig().getConfigurationSection("worlds").getKeys(false);
             for(String w : worlds){
-                boolean empty = getConfig().getBoolean("worlds." + w + ".empty");
+                String type = getConfig().getString("worlds." + w + ".type").toLowerCase();
                 WorldCreator creator = WorldCreator.name(w);
-                if(empty){
-                    creator.generator(new ChunkGenerator() {});
+                switch (type){
+                    case "nether":
+                        creator.environment(World.Environment.NETHER);
+                        break;
+                    case "end":
+                        creator.environment(World.Environment.THE_END);
+                        break;
+                    case "empty":
+                        creator.generator(new ChunkGenerator() {});
+                        break;
+                    case "normal":
+                        creator.environment(World.Environment.NORMAL);
+                        break;
                 }
                 Bukkit.createWorld(creator);
             }

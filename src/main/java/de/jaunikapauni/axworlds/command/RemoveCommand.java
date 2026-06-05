@@ -17,6 +17,7 @@ public class RemoveCommand implements CommandExecutor {
     public RemoveCommand(AxWorlds reference){
         this.reference = reference;
     }
+
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
         World world = Bukkit.getWorld(args[0]);

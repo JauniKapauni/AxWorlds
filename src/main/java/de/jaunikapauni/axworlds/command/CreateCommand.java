@@ -17,21 +17,34 @@ public class CreateCommand implements CommandExecutor {
     public CreateCommand(AxWorlds reference){
         this.reference = reference;
     }
+
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
+        Player p = (Player) sender;
         WorldCreator creator = WorldCreator.name(args[0]);
-        boolean empty = false;
-        if(args.length > 1 && args[1].equalsIgnoreCase("empty")){
-            creator.generator(new ChunkGenerator() {});
-            empty = true;
+        String type = args[1].toLowerCase();
+        switch (type){
+            case "nether":
+                creator.environment(World.Environment.NETHER);
+                break;
+            case "end":
+                creator.environment(World.Environment.THE_END);
+                break;
+            case "empty":
+                creator.generator(new ChunkGenerator() {});
+                break;
+            case "normal":
+                creator.environment(World.Environment.NORMAL);
+                break;
         }
         World newWorld = Bukkit.createWorld(creator);
-        Player p = (Player) sender;
+
         Location spawnLoc = newWorld.getSpawnLocation();
-        spawnLoc.getChunk().load();
         p.teleport(spawnLoc);
+
         p.sendMessage("Your world " + args[0] + " has been created successfully!");
-        reference.getConfig().set("worlds." + args[0] + ".empty", empty);
+
+        reference.getConfig().set("worlds." + args[0] + ".type", type);
         reference.saveConfig();
         return true;
     }
