@@ -1,6 +1,9 @@
 # AxWorlds
 > Minecraft plugin to create and manage custom worlds
 ---
+## Requirements
+- Minecraft Paper 26.1.2 Server
+---
 ## Features
 - Create World
 - Remove World
