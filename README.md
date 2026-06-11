@@ -15,6 +15,12 @@
 2. Put the `.jar` into the `/plugins` folder of server
 3. Start the server
 ---
+## Commands & Permissions
+- `/create` - `axworlds.create`
+- `/list` - `axworlds.list`
+- `/remove` - `axworlds.remove`
+- `/teleport` - `axworlds.teleport`
+---
 ## Support
 Discord: [AxForge](https://discord.gg/rYSxV4daS8)
 ---
