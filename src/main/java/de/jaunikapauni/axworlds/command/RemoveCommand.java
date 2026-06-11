@@ -20,6 +20,15 @@ public class RemoveCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
+        if(!(sender instanceof Player)){
+            sender.sendMessage("Only players can run this command!");
+            return true;
+        }
+        Player p = (Player) sender;
+        if(!p.hasPermission("axworlds.remove")){
+            p.sendMessage("You don't have the permission! [axworlds.remove]");
+            return true;
+        }
         World world = Bukkit.getWorld(args[0]);
         World defaultWorld = Bukkit.getWorlds().get(0);
         Location defaultSpawnLocation = defaultWorld.getSpawnLocation();
