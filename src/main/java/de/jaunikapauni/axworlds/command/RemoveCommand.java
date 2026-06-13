@@ -32,8 +32,8 @@ public class RemoveCommand implements CommandExecutor {
         World world = Bukkit.getWorld(args[0]);
         World defaultWorld = Bukkit.getWorlds().get(0);
         Location defaultSpawnLocation = defaultWorld.getSpawnLocation();
-        for(Player p : world.getPlayers()){
-            p.teleport(defaultSpawnLocation);
+        for(Player player : world.getPlayers()){
+            player.teleport(defaultSpawnLocation);
         }
         Bukkit.unloadWorld(world, true);
         File worldFolder = world.getWorldFolder();
