@@ -29,6 +29,9 @@ public class CreateCommand implements CommandExecutor {
             p.sendMessage("You don't have the permission! [axworlds.create]");
             return true;
         }
+        if(args.length < 2){
+            return false;
+        }
         WorldCreator creator = WorldCreator.name(args[0]);
         String type = args[1].toLowerCase();
         switch (type){
