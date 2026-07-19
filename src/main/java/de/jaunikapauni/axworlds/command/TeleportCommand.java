@@ -21,6 +21,10 @@ public class TeleportCommand implements CommandExecutor {
             return true;
         }
         World targetWorld = Bukkit.getWorld(args[0]);
+        if(targetWorld == null){
+            p.sendMessage("World doesn't exist");
+            return true;
+        }
         p.teleport(targetWorld.getSpawnLocation());
         p.sendMessage("You were successfully teleported to " + args[0]);
         return true;
