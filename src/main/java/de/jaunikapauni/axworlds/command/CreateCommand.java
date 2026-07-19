@@ -48,6 +48,10 @@ public class CreateCommand implements CommandExecutor {
                 creator.environment(World.Environment.NORMAL);
                 break;
         }
+        if(Bukkit.getWorld(args[0]) != null){
+            p.sendMessage("World already exists!");
+            return true;
+        }
         World newWorld = Bukkit.createWorld(creator);
 
         Location spawnLoc = newWorld.getSpawnLocation();
