@@ -33,6 +33,10 @@ public class RemoveCommand implements CommandExecutor {
             return false;
         }
         World world = Bukkit.getWorld(args[0]);
+        if(world == null){
+            p.sendMessage("World doesn't exist!");
+            return true;
+        }
         World defaultWorld = Bukkit.getWorlds().get(0);
         Location defaultSpawnLocation = defaultWorld.getSpawnLocation();
         for(Player player : world.getPlayers()){
