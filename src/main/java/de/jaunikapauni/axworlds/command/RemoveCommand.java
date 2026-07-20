@@ -29,6 +29,9 @@ public class RemoveCommand implements CommandExecutor {
             p.sendMessage("You don't have the permission! [axworlds.remove]");
             return true;
         }
+        if(args.length < 1){
+            return false;
+        }
         World world = Bukkit.getWorld(args[0]);
         World defaultWorld = Bukkit.getWorlds().get(0);
         Location defaultSpawnLocation = defaultWorld.getSpawnLocation();
