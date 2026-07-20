@@ -47,6 +47,9 @@ public class CreateCommand implements CommandExecutor {
             case "normal":
                 creator.environment(World.Environment.NORMAL);
                 break;
+            default:
+                p.sendMessage("Unkown world type");
+                return true;
         }
         if(Bukkit.getWorld(args[0]) != null){
             p.sendMessage("World already exists!");
