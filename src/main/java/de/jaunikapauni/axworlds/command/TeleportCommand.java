@@ -20,6 +20,9 @@ public class TeleportCommand implements CommandExecutor {
             p.sendMessage("You don't have the permission! [axworlds.teleport]");
             return true;
         }
+        if(args.length < 1){
+            return false;
+        }
         World targetWorld = Bukkit.getWorld(args[0]);
         if(targetWorld == null){
             p.sendMessage("World doesn't exist");
