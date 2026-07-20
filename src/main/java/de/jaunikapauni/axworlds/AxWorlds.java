@@ -22,7 +22,7 @@ public final class AxWorlds extends JavaPlugin {
         getCommand("remove").setExecutor(new RemoveCommand(this));
         getCommand("remove").setTabCompleter(new RemoveTabCompleter());
         saveDefaultConfig();
-        loadWorlds();
+        Bukkit.getScheduler().runTask(this, this::loadWorlds);
         getLogger().info("");
         getLogger().info("----------------------------------------");
         getLogger().info("Name: " + getName());
