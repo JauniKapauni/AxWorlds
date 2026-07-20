@@ -56,7 +56,10 @@ public class CreateCommand implements CommandExecutor {
             return true;
         }
         World newWorld = Bukkit.createWorld(creator);
-
+        if(newWorld == null){
+            p.sendMessage("Failed to create world.");
+            return true;
+        }
         Location spawnLoc = newWorld.getSpawnLocation();
         p.teleport(spawnLoc);
 
