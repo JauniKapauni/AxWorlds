@@ -37,7 +37,9 @@ public class RemoveCommand implements CommandExecutor {
         }
         Bukkit.unloadWorld(world, true);
         File worldFolder = world.getWorldFolder();
-        deleteFolder(worldFolder);
+        Bukkit.getScheduler().runTaskAsynchronously(reference, () -> {
+            deleteFolder(worldFolder);
+        });
         sender.sendMessage("You have successfully removed " + args[0]);
         reference.getConfig().set("worlds" + "." + args[0], null);
         reference.saveConfig();
