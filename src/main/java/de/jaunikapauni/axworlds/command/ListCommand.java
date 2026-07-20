@@ -20,8 +20,9 @@ public class ListCommand implements CommandExecutor {
             p.sendMessage("You don't have the permission! [axworlds.list]");
             return true;
         }
+        p.sendMessage("Loaded worlds:");
         for(World world : Bukkit.getWorlds()){
-            sender.sendMessage(world.getName());
+            p.sendMessage("- " + world.getName());
         }
         return true;
     }
